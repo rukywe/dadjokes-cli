@@ -6,7 +6,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 
@@ -61,10 +61,10 @@ func getJokeData(baseAPI string) []byte {
 	respose, err := http.DefaultClient.Do(request)
 
 	if err != nil {
-		log.Printf("Could not make a request -∞v", err)
+		log.Println("Could not make a request -∞v", err)
 	}
 
-	responseBytes, err := ioutil.ReadAll(respose.Body)
+	responseBytes, err := io.ReadAll(respose.Body)
 	if err != nil {
 		log.Println("Could not read response body -∞v", err)
 	}
